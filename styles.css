@@ -1,5 +1,17 @@
 /* your beautiful css styling goes here! */
 
-/* Note: an asteroid image is included in this repo. 
+/* Note: an asteroid image is included in this repo.
 Feel free to use it if you like. */
+.enemy {
+  position: absolute;
+}
 
+.player {
+  cursor: move;
+}
+
+.arena {
+  height: 500px;
+  width: 1000px;
+  border: black 1px solid;
+}
