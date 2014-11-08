@@ -1,4 +1,3 @@
-// start slingin' some d3 here.
 
 // $(document).ready(function(){
   // var $enemy = $('#enemy-template').html();
