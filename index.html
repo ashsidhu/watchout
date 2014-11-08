@@ -1,7 +1,10 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <link rel='stylesheet' type='css' href='styles.css'> 
+    <link rel='stylesheet' type='css' href='styles.css'>
+    <script src="d3.js" charset="utf-8"></script>
+    <script src="jquery.js" charset="utf-8"></script>
+    <script src="jquery-ui.min.js" charset="utf-8"></script>
   </head>
   <body>
     <div class="scoreboard">
@@ -9,9 +12,18 @@
       <div class="high">High score: <span>0</span></div>
       <div class="current">Current score: <span>0</span></div>
       <div class="collisions">Collisions: <span>0</span></div>
+      <div id="arena" ></div>
     </div>
-    <script src="d3.js" charset="utf-8"></script>
-    <script src='vid.js'></script>
+    <!-- <script src='vid.js'></script> -->
+    <script type="text/template" id="enemy-template">
+      <svg version="1.1"
+           baseProfile="full"
+           width="20" height="20"
+           class="enemy"
+           xmlns="http://www.w3.org/2000/svg">
+        <circle cx="10" cy="10" r="10" fill="black" />
+      </svg>
+    </script>
     <script src='watchout.js'></script>
   </body>
 </html>

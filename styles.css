@@ -1,5 +1,31 @@
 /* your beautiful css styling goes here! */
 
-/* Note: an asteroid image is included in this repo. 
+/* Note: an asteroid image is included in this repo.
 Feel free to use it if you like. */
+
+.enemy{
+  height: 20px;
+  width: 20px;
+  border-radius: 50%;
+  background-color: #333;
+  position: absolute;
+}
+
+.player {
+  height: 20px;
+  width: 20px;
+  top: 240px;
+  left: 240px;
+  border-radius: 50%;
+  background-color: red;
+  position: absolute;
+}
+
+#arena {
+  height: 500px;
+  width: 500px;
+  border: black 1px solid;
+  position: relative;
+  cursor: pointer;
+}
 
