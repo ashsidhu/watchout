@@ -1,10 +1,4 @@
-
-// $(document).ready(function(){
-  // var $enemy = $('#enemy-template').html();
-//   var $arena = $('#arena');
-//   $arena.append($enemy);
-//   console.log($('.enemy'));
-// });
+// SETUP CODE
 var arenaWidth = 500;
 var arenaHeight = 500;
 var enemyCount = 10;
@@ -17,6 +11,8 @@ var enemyIds = function() {
     }
   });
 };
+
+// SCORE CODE
 var gameStats = {
   currentScore: 0,
   highScore: 0
@@ -38,16 +34,7 @@ function resetScore () {
   gameStats.currentScore = 0;
 }
 
-// var randomPosition = {
-//     'top' : function() {
-//       return Math.random()*(arenaHeight-20) +"px";
-//     },
-//     'left' : function() {
-//       return Math.random()*(arenaWidth -20) +"px";
-//     }
-//   };
-
-// add enemies
+// ENEMY CODE
 var d3enemies = d3
   .select('#arena')
   .selectAll('.enemy')
@@ -66,19 +53,35 @@ d3enemies
     return d.x +'px';
   });
 
+
+// PLAYER CODE
+var playerDrag = d3.behavior.drag()
+  .on('drag', function (data) {
+    var y = (d3.event.y > 480) ? 480 : (d3.event.y < 0 ? 0 : d3.event.y);
+    var x = (d3.event.x > 480) ? 480 : (d3.event.x < 0 ? 0 : d3.event.x);
+    d3player
+      .style('top', (y + 'px'))
+      .style('left', (x + 'px'));
+
+
+  });
+
 var d3player = d3
   .select('#arena')
   .selectAll('.player')
   .data([0], function(d) {
     return d;
   });
+
 d3player
   .enter()
   .append('div')
-  .classed('player',true);
+  .classed('player',true)
+  .call(playerDrag);
 
 var playerNode = document.getElementsByClassName('player')[0];
 
+// TURN CODE
 function updatePosition() {
   d3enemies
   .data(enemyIds(), function(d) {
@@ -86,43 +89,20 @@ function updatePosition() {
   })
   .transition()
   .style('top', function(d) {
-    // debugger;
     return d.y +'px';
   })
   .style('left', function(d) {
     return d.x +'px';
   })
   .tween('position', function(d,i) {
-    //console.log("id" +i +"position after" +d.x);
     return function(t) {
       if ((Math.abs(playerNode.offsetLeft - this.offsetLeft) < 10 )&&
         (Math.abs(playerNode.offsetTop - this.offsetTop) < 10 )) {
         resetScore();
         console.log('collide');
       }
-      // console.log(playerNode.offsetLeft);
-      // console.log(this.offsetLeft);
     };
   });
 };
 
-// $('#arena').mousemove(function(event) {
-//   // debugger;
-//   console.log(event.offsetY);
-//   $('.player').css({top: event.offsetY, left: event.offsetX});
-// });
-$('.player').draggable({ drag: function(event, ui) {
-}
-});
-
-
-
 setInterval(updatePosition, 3000);
-
-  // //.style('top', function() {
-  //   return Math.random()*500 +"px";
-  // })
-  // .style('left', function() {
-  //   return Math.
-  // });
-
